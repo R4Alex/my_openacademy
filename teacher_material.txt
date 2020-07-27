@@ -1,0 +1,2 @@
+/workspace/odoo/odoo-bin scaffold openacademy /workspace/my_openacademy/
+

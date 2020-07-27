@@ -1,0 +1,1 @@
+odoo_bin scaffold my_module /addons/
