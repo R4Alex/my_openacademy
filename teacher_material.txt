@@ -1,2 +1,24 @@
 /workspace/odoo/odoo-bin scaffold openacademy /workspace/my_openacademy/
 
+
+############## Unidad 2
+Recorrido rapido por los módulos de Odoo
+Comando Odoo, y algunas Flags importantes
+Odoo Config file
+Comando Scaffold
+Estructura de un modulo de Odoo
+Recorrido por las carpetas y módulos de Odoo
+Ejemplo de cómo se ve un módulo por dentro.
+
+############## Unidad 3
+
+Instalar modulo de Ventas, Compras y facturacion.
+Mencionar Dependencias
+Estructura de un módulo: para que es cada carpeta y archivo. Estructura recomendada
+Crear un modelo y agregar nuestros primeros campos. Ver impacto en la base de datos
+Todo en odoo son records (Registros en la base de datos)
+Menú ítems y acciones de ventana
+Vistas Básicas: Formulario y lista.
+
+
+
