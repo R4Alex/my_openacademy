@@ -1,27 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     
-    <record model="ir.ui.view" id="openacademy_course_form_view">
-        <field name="name">session.form</field>
+    <record model="ir.ui.view" id="openacademy_session_form_view">
+        <field name="name">openacademy.session.form</field>
         <field name="model">openacademy.session</field>
+        
         <field name="arch" type="xml">
-            <form string="Sessions Form">
+            <form>
                 <sheet>
                     <group>
                         <field name="name"/>
+                        <field name="start_date"/>
+                        <field name="duration"/>
+                        <field name="seats"/>
+                        <field name="instructor_id"/>
+                        <field name="course_id"/>
+                        <label for="attendee_ids"/>
+                        <field name="attendee_ids" nolabel="1"/>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
-
+    
     <record model="ir.ui.view" id="openacademy_session_list_view">
-        <field name="name">session.list</field>
+        <field name="name">openacademy.session.list</field>
         <field name="model">openacademy.session</field>
-
         <field name="arch" type="xml">
-            <tree string="Sessions">
+            <tree string="Sessions List">
                 <field name="name"/>
+                <field name="start_date"/>
+                <field name="duration"/>
+                <field name="seats"/>
+                <field name="instructor_id"/>
+                <field name="course_id"/>
             </tree>
         </field>
     </record>
