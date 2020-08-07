@@ -20,3 +20,14 @@ class OpenAcademySession(models.Model):
         required=True)
 
     attendee_ids = fields.Many2many('res.partner', string="Attendees")
+
+    taken_seats = fields.Float(compute="_taken_seats");
+    active = fields.Boolean(default=True)
+
+    @api.depends('seats', 'attendee_ids')
+    def _taken_seats(self):
+        for record in self:
+            if not record.seats:
+                record.taken_seats = 0
+            else:
+                record.taken_seats = 100.0 * len(record.attendee_ids) / record.seats

@@ -14,7 +14,8 @@ class OpenAcademySession(models.Model):
         'res.users', 
         string="Responsible", 
         index=True, 
-        ondelete='set null'
+        ondelete='set null',
+        default=lambda self, *a: self.env.uid
     )
 
     session_ids = fields.One2many('openacademy.session', 'course_id')
