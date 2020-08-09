@@ -24,6 +24,7 @@
     'depends': [
         'base',
         'contacts',
+        'web_responsive',
     ],
 
     # always loaded

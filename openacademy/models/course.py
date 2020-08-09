@@ -3,9 +3,9 @@
 from odoo import models, fields, api
 
 
-class OpenAcademySession(models.Model):
+class OpenAcademyCourse(models.Model):
     _name = 'openacademy.course'
-    _description = '''Open Academy Session'''
+    _description = '''Open Academy Course'''
 
     name = fields.Char(string="Title", required=True)
     description = fields.Text()
