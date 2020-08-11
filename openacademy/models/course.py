@@ -5,17 +5,16 @@ from odoo import models, fields, api
 
 class OpenAcademyCourse(models.Model):
     _name = 'openacademy.course'
-    _description = '''Open Academy Course'''
+    _description = '''Openacademy Course'''
 
     name = fields.Char(string="Title", required=True)
     description = fields.Text()
 
     responsible_id = fields.Many2one(
-        'res.users', 
-        string="Responsible", 
-        index=True, 
-        ondelete='set null',
-        default=lambda self, *a: self.env.uid
+        'res.users',
+        string="Responsible",
+        index=True,
+        ondelete='set null'
     )
 
-    session_ids = fields.One2many('openacademy.session', 'course_id')
+    sesssion_ids = fields.One2many('openacademy.session', 'course_id')

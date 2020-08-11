@@ -1,48 +1,31 @@
 # -*- coding: utf-8 -*-
 
-from datetime import timedelta
-from odoo import models, fields, api, exceptions
+from odoo import models, fields, api
 
 
 class OpenAcademySession(models.Model):
     _name = 'openacademy.session'
-    _description = '''Open Academy Session'''
+    _description = '''Openacademy Session'''
 
     name = fields.Char(required=True)
+    description = fields.Text()
+
     start_date = fields.Date(default=fields.Date.today)
-    end_date = fields.Date(store=True, compute="_get_end_date", inverse="_set_end_date")
-    duration = fields.Float(digits=(6,2), help="Duration in days")
-    seats = fields.Integer(string="Number of seats")
-    instructor_id = fields.Many2one('res.partner', string='instructor')
+    duration = fields.Float(digits=(6,2), default=1.0, help="Duration in Days")
+    seats = fields.Integer(string="Number of Seats", default=3)
 
-    course_id = fields.Many2one(
-        'openacademy.course', 
-        ondelete="cascade", 
-        string="Course", 
-        required=True)
+    instructor_id = fields.Many2one('res.partner')
 
-    attendee_ids = fields.Many2many('res.partner', string="Attendees")
+    course_id = fields.Many2one('openacademy.course', required=True, ondelete="cascade")
 
-    taken_seats = fields.Float(compute="_taken_seats", store=True);
-    active = fields.Boolean(default=True)
+    attendee_ids = fields.Many2many('res.partner')
 
+    taken_seats = fields.Integer(compute="_compute_taken_seats")
 
-    @api.depends('seats', 'attendee_ids')
-    def _taken_seats(self):
+    @api.depends('attendee_ids', 'seats')
+    def _compute_taken_seats(self):
         for record in self:
-            if not record.seats:
-                record.taken_seats = 0
+            if record.seats:
+                record.taken_seats = 100 * len(record.attendee_ids) / record.seats
             else:
-                record.taken_seats = 100.0 * len(record.attendee_ids) / record.seats
-
-
-    @api.depends('start_date', 'duration')
-    def _get_end_date(self):
-        for record in self.filtered('start_date'):
-            record.end_date = record.start_date + timedelta(days=record.duration, seconds=-1)
-
-
-    @api.depends('start_date', 'duration')
-    def _set_end_date(self):
-        for record in self.filtered('start_date'):
-            record.duration = (record.end_date - record.start_date).days + 1
+                record.taken_seats = 0
