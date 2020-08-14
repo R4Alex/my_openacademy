@@ -32,5 +32,6 @@
         'security/ir.model.access.csv',
         'views/course_views.xml',
         'views/session_views.xml',
+        'views/res_partner_views.xml',
     ],
 }
