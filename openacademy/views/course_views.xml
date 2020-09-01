@@ -51,20 +51,25 @@
     <record model="ir.ui.view" id="openacademy_course_search_view">
         <field name="name">course.search</field>
         <field name="model">openacademy.course</field>
-
         <field name="arch" type="xml">
             <search string="Courses Search">
                 <field name="name" string="Name search"/>
                 <field name="description"/>
+                <filter name="my_courses" string="My courses" domain="[('responsible_id', '=', uid)]"/>
+
+                <group string="Group By">
+                    <filter name="by_responsible" string="Responsable"
+                            context="{'group_by': 'responsible_id'}"/>
+                </group>
             </search>
         </field>
-
     </record>
 
     <record model="ir.actions.act_window" id="course_list_action">
         <field name="name">Courses</field>
         <field name="res_model">openacademy.course</field>
         <field name="view_mode">tree,form</field>
+        <field name="context" eval="{'search_default_my_courses': 1}"/>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">Create your firts Course</p>
         </field>

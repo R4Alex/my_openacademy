@@ -26,7 +26,11 @@ class OpenAcademySession(models.Model):
 
     taken_seats = fields.Float(compute="_taken_seats", store=True);
 
+    # to make a kanbam view 
+    color = fields.Float()
 
+    # To use in graph
+    attendees_count = fields.Integer(compute="_get_attendees_count", store=True)
 
     @api.depends('seats', 'attendee_ids')
     def _taken_seats(self):
@@ -47,6 +51,11 @@ class OpenAcademySession(models.Model):
     def _set_end_date(self):
         for record in self.filtered('start_date'):
             record.duration = (record.end_date - record.start_date).days + 1
+
+    @api.depends('attendee_ids')
+    def _get_attendees_count(self):
+        for record in self:
+            record.attendees_count = len(record.attendee_ids)
 
 
     @api.onchange('seats', 'attendee_ids')
