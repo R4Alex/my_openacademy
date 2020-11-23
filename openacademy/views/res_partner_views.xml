@@ -1,50 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <odoo>
-    <record model="ir.ui.view" id="partner_instructor_form_view">
-        <field name="name">partner.form.instructor</field>
+    <record model="ir.ui.view" id="partner_intructor_form_view">
+        <field name="name">partner.intructor.form</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"></field>
-
+        
         <field name="arch" type="xml">
-            <notebook position="inside">
-                <page string="Sessions">
+            <xpath expr="//notebook" position="inside">
+                <page string="Academy">
                     <group>
                         <field name="instructor"/>
-                        <field name="sessions_ids"/>
+                        <field name="student"/>
+                        <field name="sessions_ids">
+                            <tree>
+                                <field name="name"/>
+                                <field name="start_date"/>
+                                <field name="course_id"/>
+                            </tree>
+                        </field>
                     </group>
                 </page>
-            </notebook>
-
-            <xpath expr="//notebook/page[@name='sales_purchases']//field[@name='ref']" position="before">
-                <field name="other_field"/>
             </xpath>
 
-            <field name="ref" position="after">
+            <!--before, after, replace, inside, attributes-->
+            <xpath expr="//page[@name='sales_purchases']//field[@name='user_id']" position="before">
                 <field name="student"/>
-            </field>
-
-            <xpath expr="//notebook/page[@name='sales_purchases']//field[@name='ref']" position="replace">
-                <field name="ref" string="My Custom Reference"/>
             </xpath>
 
-            <xpath expr="//notebook/page[@name='sales_purchases']//field[@name='user_id']" position="attributes">
-                <attribute name="attrs">{'readonly':True}</attribute>
+            <xpath expr="//page[@name='sales_purchases']//field[@name='user_id']" position="replace">
+                <field name="user_id" string="Automatic Salesperson"/>
+            </xpath>
+
+            <xpath expr="//page[@name='sales_purchases']//field[@name='user_id']" position="attributes">
+                <attribute name="attrs">{'readonly': True}</attribute>
             </xpath>
 
         </field>
     </record>
-
-
-    <record model="ir.actions.act_window" id="contact_list_action">
-        <field name="name">Contacts</field>
-        <field name="res_model">res.partner</field>
-        <field name="view_mode">tree,form,kanban</field>
-    </record>
-
-    <menuitem id="configuration_menu" name="Configuration" parent="main_openacademy_menu"/>
-
-    <menuitem id="contact_menu" name="Contacts"
-                parent="configuration_menu"
-                action="contact_list_action"/>
+    
 </odoo>
