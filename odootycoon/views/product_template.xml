@@ -8,6 +8,8 @@
             <notebook position="inside">
                 <page string="Odoo Tycoon">
                     <group>
+                        <field name="list_price"/>
+                        <field name="standard_price"/>
                         <field name="unlockcost" />
                         <field name="unlocked" attrs="{'invisible': [('unlocked', '=', False)]}" />
                         <button

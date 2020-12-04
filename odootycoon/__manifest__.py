@@ -15,6 +15,7 @@
     'depends': [
         'base',
         'product',
+        'snailmail',
         'web_responsive',
     ],
 

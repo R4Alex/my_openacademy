@@ -6,7 +6,7 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
     _description = '''  '''
     
-    unlockcost = fields.Float('Unlock Cost', default=750)
+    unlockcost = fields.Float('Unlock Cost', default=100)
     unlocked = fields.Boolean('Unlocked', default=False)
 
     def unlockproduct(self):
