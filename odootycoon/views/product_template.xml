@@ -1,0 +1,24 @@
+<odoo>
+    <!-- explicit form view definition -->
+    <record model="ir.ui.view" id="odootycoon_product_form">
+        <field name="name">odootycoon.product.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Odoo Tycoon">
+                    <group>
+                        <field name="unlockcost" />
+                        <field name="unlocked" attrs="{'invisible': [('unlocked', '=', False)]}" />
+                        <button
+                            name="unlockproduct"
+                            string="Unlock Product"
+                            type="object"
+                            attrs="{'invisible': [('unlocked', '=', True)]}"/>
+                    </group>
+                </page>
+            </notebook>
+
+        </field>
+    </record>
+</odoo>

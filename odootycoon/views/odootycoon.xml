@@ -1,0 +1,63 @@
+<odoo>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="odootycoon_gamemanager_list">
+        <field name="name">odootycoon.gamemanager.tree</field>
+        <field name="model">odootycoon.gamemanager</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="cash"/>
+                <field name="day"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- explicit form view definition -->
+    <record model="ir.ui.view" id="odootycoon_gamemanager_form">
+        <field name="name">odootycoon.gamemanager.form</field>
+        <field name="model">odootycoon.gamemanager</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="reset" string="Reset Game" type="object" />
+                    <button name="nextday" string="Next Day" type="object" />
+                    <button name="skip5days" string="Skip 5 Days" type="object" />
+                    <button name="skip30days" string="Skip 30 Days" type="object" />
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="cash" />
+                        <field name="day" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="odootycoon.action_window_manager">
+        <field name="name">Odoo Tycoon Game manager</field>
+        <field name="res_model">odootycoon.gamemanager</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="odootycoon.action_window_products">
+        <field name="name">Odoo Tycoon Products</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <!-- Top menu item (Main Menu)-->
+    <menuitem name="Odoo Tycoon" id="odootycoon.menu_root" />
+    <!-- Menu categories (item menu's sub-menus)-->
+    <menuitem name="Tycoon" id="odootycoon.menu_1" parent="odootycoon.menu_root" />
+
+
+    <!-- actions -->
+    <menuitem name="Game Manager" id="odootycoon.menu_1_gamemanager" parent="odootycoon.menu_1" action="odootycoon.action_window_manager" />
+
+    <menuitem name="Tycoon Products" id="odootycoon.menu_1_products" parent="odootycoon.menu_1" action="odootycoon.action_window_products" />
+
+</odoo>
