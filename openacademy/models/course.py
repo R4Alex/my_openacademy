@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+
 from odoo import models, fields, api
 
 
@@ -11,9 +12,9 @@ class OpenAcademyCourse(models.Model):
     description = fields.Text()
 
     responsible_id = fields.Many2one(
-        'res.users', 
+        'res.users',
         string="Responsible", 
-        index=True, 
+        index=True,
         ondelete='set null',
         default=lambda self, *a: self.env.uid
     )

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from datetime import timedelta
-from odoo import models, fields, api, exceptions
+from odoo import models, fields, api, exceptions, _
 
 
 class OpenAcademySession(models.Model):
@@ -85,3 +85,9 @@ class OpenAcademySession(models.Model):
             if record.instructor_id in record.attendee_ids:
                 raise exceptions.ValidationError(
                         "A session's instructor can't be an attendee")
+
+    @api.constrains('attendees_count')
+    def _check_attendees_count(self):
+        for record in self.filtered("attendees_count"):
+            if record.attendees_count > 30:
+                raise exceptions.ValidationError(_("You can't add more attendees than 30"))
